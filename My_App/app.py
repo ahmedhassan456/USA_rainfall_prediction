@@ -7,8 +7,8 @@ from controllers.GetPredictions import GetPredictions
 
 app = FastAPI()
 
-model = LoadModel("My App/models/USA_rainfall_prediction_model_100%.pkl")
-encoder = LoadModel("My App/models/encoder.pkl")
+model = LoadModel("My_App/models/USA_rainfall_prediction_model_100%.pkl")
+encoder = LoadModel("My_App/models/encoder.pkl")
 
 class Locations(str, Enum):
     New_York = "New York"
