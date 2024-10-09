@@ -10,11 +10,6 @@ app = FastAPI()
 model = LoadModel("My App/models/USA_rainfall_prediction_model_100%.pkl")
 encoder = LoadModel("My App/models/encoder.pkl")
 
-locations = ['New York', 'Los Angeles', 'Denver', 'Seattle', 'San Francisco',
-            'Charlotte', 'Indianapolis', 'Columbus', 'Fort Worth', 'Jacksonville',
-            'Austin', 'San Jose', 'Dallas', 'San Diego', 'San Antonio',
-            'Philadelphia', 'Phoenix', 'Houston', 'Chicago', 'Washington D.C.']
-
 class Locations(str, Enum):
     New_York = "New York"
     Los_Angeles = "Los Angeles"
@@ -41,8 +36,11 @@ def root():
     return {"Test": "Hello, World"}
 
 @app.get("/USA Rainfall Prediction")
-def predict(location: Locations,temperature: float, humidity: float, wind_speed: float, 
-            precipitation: float, cloud_cover: float, pressure: float, year: int, month: int, day: int):
+def predict(location: Locations,temperature: float = Query(..., ge=30.0, le=100.0),
+            humidity: float = Query(..., ge=20.0, le=100.0), wind_speed: float = Query(..., ge=0.0, le=30.0), 
+            precipitation: float = Query(..., ge=0.0, le=3.0), cloud_cover: float = Query(..., ge=10.0, le=100.0), 
+            pressure: float = Query(..., ge=970.0, le=1040.0), year: int = Query(..., ge=2024, le=2030), 
+            month: int = Query(..., ge=1, le=12), day: int = Query(..., ge=1, le=30)):
     
     temp_humidity_interaction = temperature * humidity
     wind_cloud_ratio = wind_speed / cloud_cover
@@ -54,7 +52,7 @@ def predict(location: Locations,temperature: float, humidity: float, wind_speed:
     
     prediction = GetPredictions(model, encoder, inputs)
 
-    return {"The Day is:": prediction}
+    return {"The Day is": prediction}
 
 
 if __name__ == "__main__":
