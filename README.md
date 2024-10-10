@@ -21,6 +21,7 @@ The dataset provides weather attributes crucial for predicting rainfall, includi
 
 - **Accuracy**: 100%
 - **Model**: The model uses machine learning techniques to predict whether it will rain tomorrow based on the given features.
+- **Hyperparameter Tuning**: The model's hyperparameters were tuned using **Optuna**, a popular framework for optimizing hyperparameters in machine learning.
 
 ## Project Structure
 
@@ -32,3 +33,73 @@ The dataset provides weather attributes crucial for predicting rainfall, includi
 ├── requirements.txt             # Text File containing require libraries
 └── README.md                    # Project documentation (this file)
 ```
+
+## Getting Started
+
+### Prerequisites
+
+To run this project locally, you will need the following tools installed on your machine:
+
+- **Python 3.8+**
+- **Docker**
+
+### Local Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/ahmedhassan456/USA_rainfall_prediction.git
+   cd USA_rainfall_prediction
+   ```
+
+2. **Create a virtual environment and install dependencies**:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scriptsctivate`
+   pip install -r requirements.txt
+   ```
+
+3. **Run the FastAPI application**:
+
+   ```bash
+   cd My_App
+   python app.py
+   ```
+
+4. **Access the API**:
+
+   Visit `http://localhost:8000/docs` to view the FastAPI Swagger UI and test the API.
+
+### Docker Setup
+
+The project can also be run using Docker.
+
+1. **Pull the Docker image from Docker Hub**:
+
+   ```bash
+   docker pull ahmedsaqr28/rainfall_prediction:v1.0
+   ```
+
+2. **Run the Docker container**:
+
+   ```bash
+   docker run -it -p 8000:8000 ahmedsaqr28/rainfall_prediction:v1.0
+   ```
+
+3. **Access the API**:
+
+   Visit `http://localhost:8000/docs` to interact with the API.
+
+
+## Deployment
+
+This project is deployed using Docker and FastAPI. The Docker image has been pushed to Docker Hub and can be pulled using the following command:
+
+```bash
+docker pull ahmedsaqr28/rainfall_prediction:v1.0
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
